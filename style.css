@@ -123,13 +123,6 @@ h1 {
     font-size: 1.4rem;
 }
 
-.sarhne {
-    width: 23px;
-    position: absolute; 
-    left: 20px; 
-}
-
-
 .footer {
     margin-top: 50px;
     padding-bottom: 20px;
@@ -256,4 +249,5 @@ h1 {
     .my_photo { width: 130px; height: 130px; }
     .share-trigger { top: -10px; right: 10px; }
 }
+
 
