@@ -1,1 +1,163 @@
-ID-2026346
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omar Wael | Links</title>
+
+    <link rel="icon" href="img/logo.png" type="image">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="share-trigger" onclick="toggleShareMenu(true)" title="Share Profile">
+            <i class="fas fa-share-nodes"></i>
+        </div>
+
+        <header class="top">
+            <div class="image">
+                <img class="my_photo" src="img/my_photo.jpg?v=1" alt="Omar Wael">
+            </div>
+            <h1>Omar Wael</h1>
+            <p class="education">Spanish at Al-Azhar University</p>
+            <p class="bio">Studied language and translation department</p>
+        </header>
+
+        <div id="call-menu" class="call-menu-overlay" onclick="toggleCallMenu(false)">
+            <div class="call-menu-content" onclick="event.stopPropagation()">
+                <h3>Call me</h3>
+                <a href="tel:+201284825686" class="num-link">
+                    <i class="fas fa-sim-card"></i>  010 092 50 210
+                </a>
+                <button class="close-btn" onclick="toggleCallMenu(false)">Cancel</button>
+            </div>
+        </div>
+
+        <div id="share-menu" class="call-menu-overlay" onclick="toggleShareMenu(false)">
+            <div class="call-menu-content" onclick="event.stopPropagation()">
+                <h3>Share My Card</h3>
+                
+                <div id="qrcode-container">
+                    <img id="qr-code" src="" alt="QR Code">
+                </div>
+                
+                <div class="share-actions">
+                    <button class="num-link" onclick="copyToClipboard()">
+                        <i class="fas fa-copy"></i> <span id="copy-text">Copy Link</span>
+                    </button>
+                </div>
+                <button class="close-btn" onclick="toggleShareMenu(false)">Close</button>
+            </div>
+        </div>
+
+        <div id="payment-menu" class="call-menu-overlay" onclick="togglePaymentMenu(false)" style="display: none;">
+            <div class="call-menu-content" onclick="event.stopPropagation()">
+                <h3>Choose Payment Method</h3>
+
+                <a href="tel:*9*7*01009250210*#" class="num-link">
+                    <i class="fas fa-mobile-alt"></i>
+                    Vodafone Cash
+                </a>
+
+                <a href="https://ipn.eg/S/omar.wael9741/instapay/7HaRtw"
+                target="_blank"
+                class="num-link">
+                    <i class="fas fa-building-columns"></i>
+                    InstaPay
+                </a>
+
+                <button class="close-btn" onclick="togglePaymentMenu(false)">Close</button>
+            </div>
+        </div>
+
+        <ul class="links">
+            <li>
+                <a href="javascript:void(0)" onclick="toggleCallMenu(true)">
+                    <i class="fas fa-phone"></i> Call Me
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" onclick="togglePaymentMenu(true)">
+                    <i class="fas fa-money-bill-wave"></i> Payment
+                </a>
+            </li>
+            <li><a href="https://wa.me/201009250210" target="_blank"><i class="fab fa-whatsapp"></i> Whatsapp</a></li>
+            <li><a href="https://www.instagram.com/omar_el_zero" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a href="https://www.facebook.com/share/1842zLSx3c/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+            <li><a href="https://www.tiktok.com/@omar_el_zero?_r=1&_t=ZS-93mr38kpYGW" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></li>
+            <li>
+                <a href="https://ahmedred3.sarhne.com" target="_blank">
+                    <img class="sarhne" src="img/sarhne.png" alt="sarhne"> Sarhne
+                </a>
+            </li>
+        </ul>
+
+
+        <footer class="footer">
+            <a href="https://pixel-card.github.io/pixel/" target="_blank" class="powered-by">
+                <span>Create your page > </span>
+                <img src="img/logo.png" alt="Pixel Logo" class="pi-logo">
+            </a>
+            <p class="copyright">© 2026 Pixel. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+
+        function toggleCallMenu(open) {
+            const menu = document.getElementById('call-menu');
+            if(open) {
+                menu.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            } else {
+                menu.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+
+        function toggleShareMenu(open) {
+            const menu = document.getElementById('share-menu');
+            const qrImg = document.getElementById('qr-code');
+            if(open) {
+                const currentUrl = window.location.href;
+                qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(currentUrl)}`;
+                
+                menu.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            } else {
+                menu.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                document.getElementById('copy-text').innerText = "Copy Link";
+            }
+        }
+
+        function copyToClipboard() {
+            const currentUrl = window.location.href;
+            navigator.clipboard.writeText(currentUrl).then(() => {
+                const copyText = document.getElementById('copy-text');
+                copyText.innerText = "Copied! ✅";
+                setTimeout(() => {
+                    copyText.innerText = "Copy Link";
+                }, 2000);
+            });
+        }
+
+        function togglePaymentMenu(open) {
+            const menu = document.getElementById('payment-menu');
+            open ? openMenu(menu) : closeMenu(menu);
+        }
+
+        function openMenu(menu) {
+            menu.style.display = 'flex'; 
+        }
+
+        function closeMenu(menu) {
+            menu.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
